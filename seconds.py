@@ -1,4 +1,4 @@
-seconds = 3700
+seconds = 3800
 
 hours = seconds//3600
 print(hours)
