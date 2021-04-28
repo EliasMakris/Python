@@ -29,14 +29,13 @@ def print_matrix0(a, ac):
 
 def print_matrix(a, ac):
     ac = int(ac)
-    candidates = []
-    a_pos = [[len(str(round(a[i][j], ac))) for j in range(len(a[0]))] for i in range(len(a))]
-    for i in range(len(a_pos)):
-        candidates.append(max(a_pos[i]))
-    max_len = max(candidates) + 2
+    n = len(a)
+    m = len(a[0])
+    max_len = max([max([len(str(round(a[i][j], ac))) for j in range(m)]) for i in range(n)])
+    max_len += 2
 
-    for i in range(len(a)):
-        for j in range(len(a[0])):
+    for i in range(n):
+        for j in range(m):
             if abs(a[i][j]) < 0.1 ** (ac+1):
                 a[i][j] = 0.0
             if a[i][j] < 0:
@@ -50,5 +49,5 @@ def print_matrix(a, ac):
 
 # --------- TEST SECTION ------------------------------
 
-# a = [[-0.00049, -2.32667, 3, 324546576], [-40000000.87, -5, 6.1234, -4.44], [7008675645000, 10, 9, .897]]
+# a = [[-0.00049, -2.32667, 3, 324546576], [-40000000.87, -5, 6.1234, -4.44], [70000, 10, 9, .897]]
 # print_matrix(a, 3)
