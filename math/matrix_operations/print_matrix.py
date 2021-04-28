@@ -1,6 +1,6 @@
 # Prints matrix "a" using max string length of a's elements, keeping the same length for each element
 # with accuracy (num. of decimals) ac
-def print_matrix(a, ac):
+def print_matrix0(a, ac):
     ac = int(ac)
     candidates = []
     a_pos = [[len(str(round(a[i][j], ac))) for j in range(len(a[0]))] for i in range(len(a))]
@@ -27,7 +27,28 @@ def print_matrix(a, ac):
     print('')
 
 
+def print_matrix(a, ac):
+    ac = int(ac)
+    candidates = []
+    a_pos = [[len(str(round(a[i][j], ac))) for j in range(len(a[0]))] for i in range(len(a))]
+    for i in range(len(a_pos)):
+        candidates.append(max(a_pos[i]))
+    max_len = max(candidates) + 2
+
+    for i in range(len(a)):
+        for j in range(len(a[0])):
+            if abs(a[i][j]) < 0.1 ** (ac+1):
+                a[i][j] = 0.0
+            if a[i][j] < 0:
+                blank = ''
+            else:
+                blank = ' '
+            print((blank + str(round(a[i][j], ac)) + "\t").expandtabs(max_len), end='')
+        print('')
+    print('')
+
+
 # --------- TEST SECTION ------------------------------
 
-# a = [[-1, 2, 3], [-4, -5, 6.1234], [7, 10, 9]]
+# a = [[-0.00049, -2.32667, 3, 324546576], [-40000000.87, -5, 6.1234, -4.44], [7008675645000, 10, 9, .897]]
 # print_matrix(a, 3)
